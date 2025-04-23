@@ -59,7 +59,7 @@
     }
   </style>
 <script>
-  const display = document.getElementById("display");
+ const display = document.getElementById("display");
   const buttons = document.querySelectorAll(".btn");
 
   let currentInput = "";
@@ -68,10 +68,18 @@
     button.addEventListener("click", () => {
       const value = button.textContent;
 
-      // Skip these for now; they'll be handled separately
       if (value === "=" || value === "C") return;
 
-      currentInput += value;
+      // Avoid multiple decimals in the same number
+      if (value === "." && currentInput.endsWith(".")) return;
+
+      // Replace starting zero unless it's decimal or operator
+      if (currentInput === "0" && !isNaN(value) && value !== ".") {
+        currentInput = value;
+      } else {
+        currentInput += value;
+      }
+
       display.value = currentInput;
     });
   });
