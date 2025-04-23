@@ -3,87 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tailwind Calculator</title>
+  <title>Calculator</title>
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-
-  <div class="bg-black p-6 rounded-2xl shadow-xl w-full max-w-sm">
-    <!-- Display Screen -->
-    <input 
-      type="text" 
-      id="display" 
-      class="w-full mb-6 p-4 text-3xl text-right border border-gray-300 rounded-lg bg-gray-100" 
-      placeholder="0" 
-      disabled 
-    />
-
-    <!-- Buttons Grid -->
-    <div class="grid grid-cols-4 gap-4">
-      <!-- First Row -->
-      <button class="btn-gray bg-gray-500" onclick="append('7')">7</button>
-      <button class="btn-gray bg-gray-500" onclick="append('8')">8</button>
-      <button class="btn-gray bg-gray-500" onclick="append('9')">9</button>
-      <button class="btn-blue bg-blue-400" onclick="append('/')">/</button>
-
-      <!-- Second Row -->
-      <button class="btn-gray bg-gray-500" onclick="append('4')">4</button>
-      <button class="btn-gray bg-gray-500" onclick="append('5')">5</button>
-      <button class="btn-gray bg-gray-500" onclick="append('6')">6</button>
-      <button class="btn-blue bg-blue-400" onclick="append('*')">*</button>
-
-      <!-- Third Row -->
-      <button class="btn-gray bg-gray-500" onclick="append('1')">1</button>
-      <button class="btn-gray bg-gray-500" onclick="append('2')">2</button>
-      <button class="bt-gray bg-gray-500" onclick="append('3')">3</button>
-      <button class="btn-gray bg-blue-400" onclick="append('-')">-</button>
-
-      <!-- Fourth Row -->
-      <button class="btn-gray bg-gray-500" onclick="append('0')">0</button>
-      <button class="btn-red bg-red-500" onclick="clearDisplay()">C</button>
-      <button class="btn-equal bg-blue-400" onclick="calculate()">=</button>
-      <button class="btn-blue bg-blue-400" onclick="append('+')">+</button>
-    </div>
-  </div>
-
-  <!-- Script -->
   <script>
-    const display = document.getElementById('display');
-
-    function append(value) {
-      display.value += value;
-    }
-
-    function clearDisplay() {
-      display.value = '';
-    }
-
-    function calculate() {
-      try {
-        display.value = eval(display.value);
-      } catch {
-        display.value = 'Error';
-      }
+    tailwind.config = {
+      darkMode: 'class',
     }
   </script>
+</head>
 
-  <!-- Tailwind Utility Button Styles -->
-  <style>
-    .btn-gray {
-      @apply bg-gray-400 text-white text-xl py-3 rounded-xl hover:bg-gray-500;
-    }
-    .btn-blue {
-      @apply bg-blue-400 text-white text-xl py-3 rounded-xl hover:bg-blue-500;
-    }
-    .btn-red {
-      @apply bg-red-400 text-white text-xl py-3 rounded-xl hover:bg-red-500;
-    }
-    .btn-equal {
-      @apply bg-green-400 text-white text-xl py-3 rounded-xl hover:bg-green-500;
-    }
-  </style>
-
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white flex items-center justify-center min-h-screen">
+  <div class="w-full max-w-xs p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
 </body>
 </html>
-
 
