@@ -58,5 +58,26 @@
       @apply text-lg font-semibold py-3 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition;
     }
   </style>
+<script>
+  const display = document.getElementById("display");
+  const buttons = document.querySelectorAll(".btn");
+
+  let currentInput = "";
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const value = button.textContent;
+
+      // Skip these for now; they'll be handled separately
+      if (value === "=" || value === "C") return;
+
+      currentInput += value;
+      display.value = currentInput;
+    });
+  });
+</script>
+
+
+
 </body>
 </html>
