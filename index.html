@@ -60,29 +60,46 @@
   </style>
 <script>
  const display = document.getElementById("display");
-  const buttons = document.querySelectorAll(".btn");
+const buttons = document.querySelectorAll(".btn");
 
-  let currentInput = "";
+let currentInput = "";
 
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      const value = button.textContent;
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const value = button.textContent;
 
-      if (value === "=" || value === "C") return;
+    if (value === "C") {
+      currentInput = "";
+      display.value = "0";
+      return;
+    }
 
-      // Avoid multiple decimals in the same number
-      if (value === "." && currentInput.endsWith(".")) return;
-
-      // Replace starting zero unless it's decimal or operator
-      if (currentInput === "0" && !isNaN(value) && value !== ".") {
-        currentInput = value;
-      } else {
-        currentInput += value;
+    if (value === "=") {
+      try {
+        // Evaluate the expression safely
+        const result = eval(currentInput);
+        currentInput = result.toString();
+        display.value = currentInput;
+      } catch (err) {
+        display.value = "Error";
+        currentInput = "";
       }
+      return;
+    }
 
-      display.value = currentInput;
-    });
+    // Prevent multiple decimals in a single number
+    if (value === "." && currentInput.endsWith(".")) return;
+
+    // Prevent two operators in a row
+    const lastChar = currentInput.slice(-1);
+    if (["+", "-", "*", "/"].includes(lastChar) && ["+", "-", "*", "/"].includes(value)) {
+      return;
+    }
+
+    currentInput += value;
+    display.value = currentInput;
   });
+});
 </script>
 
 
