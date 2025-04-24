@@ -76,8 +76,8 @@ buttons.forEach(button => {
 
     if (value === "=") {
       try {
-        // Evaluate the expression safely
-        const result = eval(currentInput);
+        // Step 9: Evaluate the expression safely with division by zero check
+        const result = safeEvaluate(currentInput);
         currentInput = result.toString();
         display.value = currentInput;
       } catch (err) {
@@ -87,10 +87,8 @@ buttons.forEach(button => {
       return;
     }
 
-    // Prevent multiple decimals in a single number
     if (value === "." && currentInput.endsWith(".")) return;
 
-    // Prevent two operators in a row
     const lastChar = currentInput.slice(-1);
     if (["+", "-", "*", "/"].includes(lastChar) && ["+", "-", "*", "/"].includes(value)) {
       return;
@@ -100,6 +98,15 @@ buttons.forEach(button => {
     display.value = currentInput;
   });
 });
+
+// Step 9: Custom evaluation with division by zero handling
+function safeEvaluate(expression) {
+  if (/\/0(?!\d)/.test(expression)) {
+    throw new Error("Cannot divide by zero");
+  }
+  return Function('"use strict";return (' + expression + ')')(); // safer than eval
+}
+
 </script>
 
 
