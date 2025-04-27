@@ -37,8 +37,8 @@
         <button class="btn bg-blue-500 hover:bg-blue-600 rounded-xl py-3 font-semibold text-white">/</button>
         <button class="btn bg-blue-500 hover:bg-blue-600 rounded-xl py-3 font-semibold text-white">*</button>
         
-        <!-- Delete Button - Gray -->
-        <button class="btn bg-gray-600 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">←</button>
+        <!-- Delete Button - Gray, labeled "Del" -->
+        <button class="btn bg-gray-600 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">Del</button>
   
         <!-- Digits Buttons - Gray -->
         <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">7</button>
@@ -119,7 +119,7 @@
 
         if (value === "=") {
           try {
-            // Step 9: Evaluate the expression safely with division by zero check
+            // Evaluate the expression safely with division by zero check
             const result = safeEvaluate(currentInput);
             currentInput = result.toString();
             display.value = currentInput;
@@ -137,17 +137,24 @@
           return;
         }
 
+        // Handle the delete (Del) button
+        if (value === "Del") {
+          currentInput = currentInput.slice(0, -1);
+          display.value = currentInput || "0"; // If input is empty, set display to 0
+          return;
+        }
+
         currentInput += value;
         display.value = currentInput;
       });
     });
 
-    // Step 9: Custom evaluation with division by zero handling
+    // Safe evaluation (handles division by zero)
     function safeEvaluate(expression) {
       if (/\/0(?!\d)/.test(expression)) {
         throw new Error("Cannot divide by zero");
       }
-      return Function('"use strict";return (' + expression + ')')(); // safer than eval
+      return Function('"use strict";return (' + expression + ')')(); 
     }
 
     // Dark mode handling
@@ -160,6 +167,47 @@
       const isDarkMode = document.documentElement.classList.contains('dark');
       localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     });
+
+    // Step 13: Keyboard Support
+    document.addEventListener("keydown", (event) => {
+      const key = event.key;
+
+      // Handle delete
+      if (key === "Backspace") {
+        currentInput = currentInput.slice(0, -1);
+        display.value = currentInput || "0";
+        return;
+      }
+
+      // Handle clear
+      if (key === "Escape") {
+        currentInput = "";
+        display.value = "0";
+        return;
+      }
+
+      // Handle equals
+      if (key === "Enter") {
+        try {
+          const result = safeEvaluate(currentInput);
+          currentInput = result.toString();
+          display.value = currentInput;
+        } catch (err) {
+          display.value = "Error";
+          currentInput = "";
+        }
+        return;
+      }
+
+      // Handle number and operator keys
+      if (/[\d\+\-\*\/\.\(\)]/.test(key)) {
+        currentInput += key;
+        display.value = currentInput;
+      }
+    });
   </script>
 </body>
 </html>
+
+
+   
