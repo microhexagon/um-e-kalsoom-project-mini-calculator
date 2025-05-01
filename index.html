@@ -2,98 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
-    }
+    };
   </script>
 </head>
+<body class="bg-white min-h-screen text-gray-900 dark:text-white flex items-center justify-center">
 
-<body class="bg-white min-h-screen text-gray-900 dark:text-white flex items-center justify-center min-h-screen">
-  <div class="bg-yellow-400 flex items-center justify-center">
-    <div class="p-6 rounded-2xl shadow-xl w-full max-w-sm mx-auto">
-      <!-- Dark Mode Toggle Button -->
-      <div class="flex justify-between items-center mb-4">
+  <div class="bg-yellow-400 dark:bg-gray-800 flex items-center justify-center w-full min-h-screen">
+    <div class="p-6 rounded-2xl shadow-xl w-[320px] mx-auto flex flex-col gap-4">
+
+      <!-- Header with Dark Mode Toggle -->
+      <div class="flex justify-between items-center mb-2">
         <h1 class="text-xl font-bold">Calculator</h1>
         <button id="darkModeToggle" class="p-2 rounded-full bg-gray-500 text-white">
           🌙
         </button>
       </div>
 
+      <!-- Input Display -->
       <input
         id="display"
-        class="w-full text-right text-3xl md:text-4xl font-mono p-4 mb-4 border border-gray-300 rounded-lg bg-gray-500 text-white"
+        class="w-full text-right text-3xl font-mono p-4 border border-gray-300 rounded-lg bg-gray-500 text-white dark:bg-gray-600"
         type="text"
         value="0"
-        disabled
       />
 
-      <div class="grid grid-cols-4 gap-3 md:gap-4">
-        <button class="btn bg-red-600 hover:bg-red-700 rounded-xl py-3 font-semibold text-white">C</button>
-        
-        <button class="btn bg-blue-500 hover:bg-blue-600 rounded-xl py-3 font-semibold text-white">/</button>
-        <button class="btn bg-blue-500 hover:bg-blue-600 rounded-xl py-3 font-semibold text-white">*</button>
-        
-        <!-- Delete Button-->
-        <button class="btn bg-gray-600 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">Del</button>
-  
-        <!-- Digits Buttons -->
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">7</button>
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">8</button>
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">9</button>
-        <button class="btn bg-blue-500 hover:bg-blue-600 text-white rounded-xl py-3 font-semibold">-</button>
-  
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">4</button>
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">5</button>
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">6</button>
-        <button class="btn bg-blue-500 hover:bg-blue-600 text-white rounded-xl py-3 font-semibold">+</button>
-  
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">1</button>
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">2</button>
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">3</button>
-        
-        <!-- Equal Button-->
-        <button class="btn row-span-2 bg-green-500 hover:bg-green-600 text-white rounded-xl py-3 font-semibold">=</button>
-  
-        <button class="btn col-span-2 bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">0</button>
-        <button class="btn bg-gray-400 hover:bg-gray-700 text-white rounded-xl py-3 font-semibold">.</button>
+      <!-- Buttons Grid -->
+      <div class="grid grid-cols-4 gap-3">
+        <button class="btn bg-red-600 hover:bg-red-700 text-white">C</button>
+        <button class="btn bg-blue-500 hover:bg-blue-600 text-white">/</button>
+        <button class="btn bg-blue-500 hover:bg-blue-600 text-white">*</button>
+        <button class="btn bg-gray-600 hover:bg-gray-700 text-white">Del</button>
+
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">7</button>
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">8</button>
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">9</button>
+        <button class="btn bg-blue-500 hover:bg-blue-600 text-white">-</button>
+
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">4</button>
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">5</button>
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">6</button>
+        <button class="btn bg-blue-500 hover:bg-blue-600 text-white">+</button>
+
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">1</button>
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">2</button>
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">3</button>
+        <button class="btn bg-green-500 hover:bg-green-600 text-white row-span-2">=</button>
+
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white col-span-2">0</button>
+        <button class="btn bg-gray-400 hover:bg-gray-700 text-white">.</button>
       </div>
     </div>
   </div>
 
+  <!-- Styling -->
   <style>
     .btn {
-      @apply text-lg font-semibold py-3 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition;
+      @apply text-lg font-semibold py-3 rounded-xl transition;
     }
-    
-    /* Ensure smooth transition of background and text color changes */
+
     body {
       transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* Dark Mode Specific Styles */
-    .dark {
-      background-color: #1a202c;
-      color: #edf2f7;
-    }
-
-    .dark .bg-yellow-400 {
-      background-color: #2d3748;
-    }
-
-    .dark .bg-gray-500 {
-      background-color: #4a5568;
-    }
-
-    .dark .bg-gray-600 {
-      background-color: #718096;
-    }
-
-    .dark .bg-gray-700 {
-      background-color: #2d3748;
     }
 
     .dark .text-gray-900 {
@@ -101,108 +75,89 @@
     }
   </style>
 
+  <!-- Script -->
   <script>
     const display = document.getElementById("display");
     const buttons = document.querySelectorAll(".btn");
 
-    let currentInput = "";
+    function getCaretPosition(el) {
+      return el.selectionStart;
+    }
+
+    function setCaretPosition(el, pos) {
+      el.setSelectionRange(pos, pos);
+      el.focus();
+    }
 
     buttons.forEach(button => {
       button.addEventListener("click", () => {
         const value = button.textContent;
+        let currentValue = display.value;
+        const cursorPos = getCaretPosition(display);
 
         if (value === "C") {
-          currentInput = "";
           display.value = "0";
+          return;
+        }
+
+        if (value === "Del") {
+          if (cursorPos > 0) {
+            display.value = currentValue.slice(0, cursorPos - 1) + currentValue.slice(cursorPos);
+            setCaretPosition(display, cursorPos - 1);
+          }
           return;
         }
 
         if (value === "=") {
           try {
-            //  division by zero check
-            const result = safeEvaluate(currentInput);
-            currentInput = result.toString();
-            display.value = currentInput;
-          } catch (err) {
+            const result = safeEvaluate(display.value);
+            display.value = result.toString();
+          } catch {
             display.value = "Error";
-            currentInput = "";
           }
           return;
         }
 
-        if (value === "." && currentInput.endsWith(".")) return;
-
-        const lastChar = currentInput.slice(-1);
-        if (["+", "-", "*", "/"].includes(lastChar) && ["+", "-", "*", "/"].includes(value)) {
-          return;
-        }
-
-        // Handle the delete  button
-        if (value === "Del") {
-          currentInput = currentInput.slice(0, -1);
-          display.value = currentInput || "0"; // If input is empty, set display to 0
-          return;
-        }
-
-        currentInput += value;
-        display.value = currentInput;
+        // Insert character at cursor position
+        const newValue = currentValue.slice(0, cursorPos) + value + currentValue.slice(cursorPos);
+        display.value = newValue;
+        setCaretPosition(display, cursorPos + value.length);
       });
     });
 
-    // (handles division by zero)
     function safeEvaluate(expression) {
-      if (/\/0(?!\d)/.test(expression)) {
-        throw new Error("Cannot divide by zero");
-      }
-      return Function('"use strict";return (' + expression + ')')(); 
+      if (/\/0(?!\d)/.test(expression)) throw new Error("Divide by zero");
+      return Function('"use strict";return (' + expression + ')')();
     }
 
-    // Dark mode 
+    // Dark mode toggle logic
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const updateIcon = () => {
+      toggleBtn.textContent = document.documentElement.classList.contains('dark') ? "☀️" : "🌙";
+    };
+
     if (localStorage.getItem('theme') === 'dark') {
       document.documentElement.classList.add('dark');
     }
+    updateIcon();
 
-    document.getElementById('darkModeToggle').addEventListener('click', () => {
+    toggleBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
-      const isDarkMode = document.documentElement.classList.contains('dark');
-      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateIcon();
     });
 
-    // Keyboard Support
-    document.addEventListener("keydown", (event) => {
-      const key = event.key;
-
-      // Handle delete
-      if (key === "Backspace") {
-        currentInput = currentInput.slice(0, -1);
-        display.value = currentInput || "0";
-        return;
-      }
-
-      // Handle clear
-      if (key === "Escape") {
-        currentInput = "";
-        display.value = "0";
-        return;
-      }
-
-      // Handle equals
-      if (key === "Enter") {
+    // Allow normal typing
+    display.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
         try {
-          const result = safeEvaluate(currentInput);
-          currentInput = result.toString();
-          display.value = currentInput;
-        } catch (err) {
+          const result = safeEvaluate(display.value);
+          display.value = result.toString();
+        } catch {
           display.value = "Error";
-          currentInput = "";
         }
-        return;
-      }
-
-      // Handle number and operator keys
-      if (/[\d\+\-\*\/\.\(\)]/.test(key)) {
-        currentInput += key;
-        display.value = currentInput;
+        e.preventDefault();
       }
     });
   </script>
